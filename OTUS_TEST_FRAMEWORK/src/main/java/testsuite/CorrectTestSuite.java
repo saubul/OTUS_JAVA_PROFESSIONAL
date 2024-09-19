@@ -1,4 +1,4 @@
-package testSuite;
+package testsuite;
 
 import annotation.AfterSuite;
 import annotation.BeforeSuite;

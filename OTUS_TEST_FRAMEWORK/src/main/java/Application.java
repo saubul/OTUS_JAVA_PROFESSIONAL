@@ -1,8 +1,8 @@
-import testRunner.TestRunner;
-import testSuite.CorrectTestSuite;
-import testSuite.DisabledTestSuite;
-import testSuite.MoreThanOneAnnotationTestSuite;
-import testSuite.WrongTestSuite;
+import testrunner.TestRunner;
+import testsuite.CorrectTestSuite;
+import testsuite.DisabledTestSuite;
+import testsuite.MoreThanOneAnnotationTestSuite;
+import testsuite.WrongTestSuite;
 
 import java.lang.reflect.InvocationTargetException;
 
