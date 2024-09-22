@@ -18,15 +18,9 @@ public class PaymentProcessorImpl implements PaymentProcessor {
     public boolean makeTransfer(Agreement source, Agreement destination, int sourceType,
                                 int destinationType, BigDecimal amount) {
 
-        Account sourceAccount = accountService.getAccounts(source).stream()
-                .filter(account -> account.getType() == sourceType)
-                .findAny()
-                .orElseThrow(() -> new AccountException("Account not found"));
+        Account sourceAccount = findAccountByAgreementAndType(source, sourceType);
 
-        Account destinationAccount = accountService.getAccounts(destination).stream()
-                .filter(account -> account.getType() == destinationType)
-                .findAny()
-                .orElseThrow(() -> new AccountException("Account not found"));
+        Account destinationAccount = findAccountByAgreementAndType(destination, destinationType);
 
         return accountService.makeTransfer(sourceAccount.getId(), destinationAccount.getId(), amount);
     }
@@ -37,18 +31,20 @@ public class PaymentProcessorImpl implements PaymentProcessor {
                                              BigDecimal amount,
                                              BigDecimal comissionPercent) {
 
-        Account sourceAccount = accountService.getAccounts(source).stream()
-                .filter(account -> account.getType() == sourceType)
-                .findAny()
-                .orElseThrow(() -> new AccountException("Account not found"));
+        Account sourceAccount = findAccountByAgreementAndType(source, sourceType);
 
-        Account destinationAccount = accountService.getAccounts(destination).stream()
-                .filter(account -> account.getType() == destinationType)
-                .findAny()
-                .orElseThrow(() -> new AccountException("Account not found"));
+        Account destinationAccount = findAccountByAgreementAndType(destination, destinationType);
 
         accountService.charge(sourceAccount.getId(), amount.negate().multiply(comissionPercent));
 
         return accountService.makeTransfer(sourceAccount.getId(), destinationAccount.getId(), amount);
     }
+
+    private Account findAccountByAgreementAndType(Agreement agreement, int type) {
+        return accountService.getAccounts(agreement).stream()
+                .filter(account -> account.getType() == type)
+                .findAny()
+                .orElseThrow(() -> new AccountException("Account not found"));
+    }
+
 }

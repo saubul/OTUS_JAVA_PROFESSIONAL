@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -35,42 +36,37 @@ public class PaymentProcessorImplWithSpyTest {
     @InjectMocks
     PaymentProcessorImpl paymentProcessor;
 
-    @BeforeEach
-    public void init() {
-        paymentProcessor = new PaymentProcessorImpl(accountService);
-    }
+    Agreement sourceAgreement;
+    Agreement destinationAgreement;
+    Account sourceAccount;
+    Account destinationAccount;
 
-    @Test
-    public void testTransfer() {
-        Agreement sourceAgreement = new Agreement();
+    @BeforeEach
+    void init() {
+        paymentProcessor = new PaymentProcessorImpl(accountService);
+        sourceAgreement = new Agreement();
         sourceAgreement.setId(1L);
 
-        Agreement destinationAgreement = new Agreement();
+        destinationAgreement = new Agreement();
         destinationAgreement.setId(2L);
 
-        Account sourceAccount = new Account();
+        sourceAccount = new Account();
         sourceAccount.setAmount(BigDecimal.TEN);
         sourceAccount.setType(0);
         sourceAccount.setId(10L);
 
-        Account destinationAccount = new Account();
+        destinationAccount = new Account();
         destinationAccount.setAmount(BigDecimal.ZERO);
         destinationAccount.setType(0);
         destinationAccount.setId(20L);
+    }
 
-        doReturn(List.of(sourceAccount)).when(accountService).getAccounts(argThat(new ArgumentMatcher<Agreement>() {
-            @Override
-            public boolean matches(Agreement argument) {
-                return argument != null && argument.getId() == 1L;
-            }
-        }));
+    @Test
+    void testTransfer() {
 
-        doReturn(List.of(destinationAccount)).when(accountService).getAccounts(argThat(new ArgumentMatcher<Agreement>() {
-            @Override
-            public boolean matches(Agreement argument) {
-                return argument != null && argument.getId() == 2L;
-            }
-        }));
+        doReturn(List.of(sourceAccount)).when(accountService).getAccounts(argThat(argument -> argument != null && argument.getId() == 1L));
+
+        doReturn(List.of(destinationAccount)).when(accountService).getAccounts(argThat(argument -> argument != null && argument.getId() == 2L));
 
         when(accountDao.findById(10L)).thenReturn(Optional.of(sourceAccount));
         when(accountDao.findById(20L)).thenReturn(Optional.of(destinationAccount));
@@ -81,6 +77,20 @@ public class PaymentProcessorImplWithSpyTest {
 
         assertEquals(new BigDecimal(9), sourceAccount.getAmount());
         assertEquals(BigDecimal.ONE, destinationAccount.getAmount());
+
+    }
+
+    @Test
+    void makeTransferWithComissionTrueTest() {
+        doReturn(List.of(sourceAccount)).when(accountService).getAccounts(argThat(argument -> argument != null && argument.getId() == 1L));
+
+        doReturn(List.of(destinationAccount)).when(accountService).getAccounts(argThat(argument -> argument != null && argument.getId() == 2L));
+
+        when(accountDao.findById(10L)).thenReturn(Optional.of(sourceAccount));
+        when(accountDao.findById(20L)).thenReturn(Optional.of(destinationAccount));
+
+        assertTrue(paymentProcessor.makeTransferWithComission(sourceAgreement, destinationAgreement, 0, 0,
+                new BigDecimal(5), new BigDecimal("0.2")));
 
     }
 
