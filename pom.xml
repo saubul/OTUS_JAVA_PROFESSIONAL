@@ -11,6 +11,7 @@
   <url>http://maven.apache.org</url>
   <modules>
     <module>OTUS_TEST_FRAMEWORK</module>
+    <module>OTUS_TESTS</module>
   </modules>
 
   <properties>
