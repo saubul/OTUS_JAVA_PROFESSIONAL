@@ -10,6 +10,12 @@ import ru.otus.bank.entity.Agreement;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 public class AgreementServiceImplTest {
 
     private AgreementDao dao = Mockito.mock(AgreementDao.class);
@@ -22,7 +28,7 @@ public class AgreementServiceImplTest {
     }
 
     @Test
-    public void testFindByName() {
+    void testFindByName() {
         String name = "test";
         Agreement agreement = new Agreement();
         agreement.setId(10L);
@@ -33,12 +39,12 @@ public class AgreementServiceImplTest {
 
         Optional<Agreement> result = agreementServiceImpl.findByName(name);
 
-        Assertions.assertTrue(result.isPresent());
-        Assertions.assertEquals(10, agreement.getId());
+        assertTrue(result.isPresent());
+        assertEquals(10, agreement.getId());
     }
 
     @Test
-    public void testFindByNameWithCaptor() {
+    void testFindByNameWithCaptor() {
         String name = "test";
         Agreement agreement = new Agreement();
         agreement.setId(10L);
@@ -51,9 +57,21 @@ public class AgreementServiceImplTest {
 
         Optional<Agreement> result = agreementServiceImpl.findByName(name);
 
-        Assertions.assertEquals("test", captor.getValue());
-        Assertions.assertTrue(result.isPresent());
-        Assertions.assertEquals(10, agreement.getId());
+        assertEquals("test", captor.getValue());
+        assertTrue(result.isPresent());
+        assertEquals(10, agreement.getId());
+    }
+
+    @Test
+    void addAgreementTest() {
+        ArgumentCaptor<Agreement> agreementArgumentCaptor = ArgumentCaptor.forClass(Agreement.class);
+
+        agreementServiceImpl.addAgreement("test");
+        verify(dao).save(agreementArgumentCaptor.capture());
+
+        verify(dao, times(1)).save(any());
+        verify(dao, times(1)).save(agreementArgumentCaptor.getValue());
+        assertEquals("test", agreementArgumentCaptor.getValue().getName());
     }
 
 }

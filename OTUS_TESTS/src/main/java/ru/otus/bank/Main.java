@@ -33,8 +33,8 @@ public class Main {
         Agreement bankAgreement = agreementService.findByName("Bank").get();
         Agreement clientAgreement = agreementService.findByName("Client1").get();
 
-         paymentProcessor.makeTransferWithComission(bankAgreement, clientAgreement, 0, 0,
-                 new BigDecimal(22), new BigDecimal("0.1"));
+        paymentProcessor.makeTransferWithComission(bankAgreement, clientAgreement, 0, 0,
+                new BigDecimal(22), new BigDecimal("0.1"));
 
         System.out.println(accountService.getAccounts());
 
