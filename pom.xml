@@ -10,8 +10,9 @@
   <name>OTUS_JAVA_PROFESSIONAL</name>
   <url>http://maven.apache.org</url>
   <modules>
-    <module>OTUS_TEST_FRAMEWORK</module>
+    <!--module>OTUS_TEST_FRAMEWORK</module-->
     <module>OTUS_TESTS</module>
+    <module>OTUS_STREAM</module>
   </modules>
 
   <properties>
