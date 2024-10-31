@@ -14,6 +14,7 @@
     <module>OTUS_TESTS</module>
     <module>OTUS_STREAM</module>
     <module>hw04</module>
+      <module>hw05</module>
   </modules>
 
   <properties>
