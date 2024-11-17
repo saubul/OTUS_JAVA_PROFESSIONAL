@@ -12,7 +12,7 @@ public class User {
     private String login;
     @RepositoryField
     private String password;
-    @RepositoryField
+    @RepositoryField(name = "name")
     private String nickname;
 
     public Long getId() {
