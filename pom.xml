@@ -14,11 +14,14 @@
     <module>OTUS_TESTS</module>
     <module>OTUS_STREAM</module>
     <module>hw04</module>
-      <module>hw06</module>
+      <module>hw05</module>
+      <module>hw07</module>
   </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
 </project>
