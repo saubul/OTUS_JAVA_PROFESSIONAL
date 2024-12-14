@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="SingleUnit" transaction-type="RESOURCE_LOCAL">
+        <!-- (1) Сущности -->
+        <class>ru.otus.entity.Client</class>
+        <class>ru.otus.entity.Address</class>
+        <class>ru.otus.entity.Phone</class>
+
+        <!-- (2) Настройки подключения -->
+        <properties>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:~/db"/>
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+
+            <!-- (3) Настройки Hibernate -->
+            <!-- с версии Hibernate 5.x не указывается: <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/> -->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+
+            <!-- (4) Логирование SQL запросов -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
