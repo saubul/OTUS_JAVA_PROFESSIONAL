@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface TransfersRepository extends JpaRepository<Transfer, String> {
+public interface TransferRepository extends JpaRepository<Transfer, String> {
     Optional<Transfer> findByIdAndClientId(String id, String clientId);
+
     List<Transfer> findAllByClientId(String clientId);
+
 }

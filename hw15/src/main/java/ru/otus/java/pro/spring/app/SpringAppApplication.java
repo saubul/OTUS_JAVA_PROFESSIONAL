@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringAppApplication implements CommandLineRunner {
+public class SpringAppApplication {
 	/*
 	1. Добавьте сущность СчетКлиента/Account (id PK, номерСчета, клиентИд, баланс, заблокированЛи)
 	2. Клиент может запросить информацию по счетам/счету(поиск по ИД)
@@ -24,7 +24,4 @@ public class SpringAppApplication implements CommandLineRunner {
 		SpringApplication.run(SpringAppApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-	}
 }
