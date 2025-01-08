@@ -7,7 +7,7 @@ import ru.otus.java.pro.spring.app.dtos.TransferDto;
 import ru.otus.java.pro.spring.app.dtos.TransfersPageDto;
 import ru.otus.java.pro.spring.app.entities.Transfer;
 import ru.otus.java.pro.spring.app.exceptions_handling.ResourceNotFoundException;
-import ru.otus.java.pro.spring.app.services.TransfersService;
+import ru.otus.java.pro.spring.app.services.TransferService;
 
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -15,10 +15,11 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/transfers")
-public class TransfersController {
-    private final TransfersService transfersService;
+public class TransferController {
+    private final TransferService transfersService;
 
-    private static final Function<Transfer, TransferDto> ENTITY_TO_DTO = t -> new TransferDto(t.getId(), t.getClientId(), t.getTargetClientId(), t.getSourceAccount(), t.getTargetAccount(), t.getMessage(), t.getAmount());
+    private static final Function<Transfer, TransferDto> ENTITY_TO_DTO = t -> new TransferDto(t.getId(), t.getClientId(),
+            t.getTargetClientId(), t.getSourceAccount().getNumber(), t.getTargetAccount().getNumber(), t.getMessage(), t.getAmount());
 
     @GetMapping
     public TransfersPageDto getAllTransfers(@RequestHeader(name = "client-id") String clientId) {

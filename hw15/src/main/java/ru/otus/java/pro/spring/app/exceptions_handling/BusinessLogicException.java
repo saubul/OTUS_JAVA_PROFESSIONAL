@@ -7,7 +7,7 @@ public class BusinessLogicException extends RuntimeException {
         return code;
     }
 
-    public BusinessLogicException(String message, String code) {
+    public BusinessLogicException(String code, String message) {
         super(message);
         this.code = code;
     }
