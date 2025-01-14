@@ -1,0 +1,25 @@
+!!ru.otus.entities.PhoneMessages
+phoneMessages:
+- belongNumber: '+79215553267'
+  liteMessageList:
+  - {chatIdentifier: Apple, last: Saint-Petersburg, sendDate: !!timestamp '2025-07-03T11:53:34Z',
+    text: PROBLEM WARNING - No more free space on the disc}
+  - {chatIdentifier: Google, last: Saint-Petersburg, sendDate: !!timestamp '2025-07-03T11:53:34Z',
+    text: PROBLEM WARNING - No more free space on the disc}
+- belongNumber: '+79219213267'
+  liteMessageList:
+  - {chatIdentifier: Apple, last: Saint-Petersburg, sendDate: !!timestamp '2025-07-03T11:09:19Z',
+    text: PROBLEM CRITICAL - There is hight price of the order}
+  - {chatIdentifier: Google, last: Saint-Petersburg, sendDate: !!timestamp '2025-07-03T11:09:19Z',
+    text: PROBLEM CRITICAL - There is hight price of the order}
+- belongNumber: '+79655914484'
+  liteMessageList:
+  - {chatIdentifier: Apple, last: Saint-Petersburg, sendDate: !!timestamp '2025-07-03T12:09:15Z',
+    text: PROBLEM CRITICAL - The weather is not good for today}
+  - {chatIdentifier: Google, last: Saint-Petersburg, sendDate: !!timestamp '2025-07-03T12:09:15Z',
+    text: PROBLEM CRITICAL - The weather is not good for today}
+  - {chatIdentifier: Apple, last: Saint-Petersburg, sendDate: !!timestamp '2025-07-03T12:53:28Z',
+    text: PROBLEM WARNING - It's raining like dogs and cats}
+  - {chatIdentifier: Google, last: Saint-Petersburg, sendDate: !!timestamp '2025-07-03T12:53:28Z',
+    text: PROBLEM WARNING - It's raining like dogs and cats}
+
