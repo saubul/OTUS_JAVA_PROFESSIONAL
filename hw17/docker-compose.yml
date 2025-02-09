@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  activemq:
+    image: islandora/activemq:3.5.1
+    container_name: activemq
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+    volumes:
+      - activemq_data:/var/lib/activemq
+      - activemq_config:/etc/activemq
+
+volumes:
+  activemq_data:
+  activemq_config:
