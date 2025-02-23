@@ -1,0 +1,15 @@
+{
+  "name": "TransferStatus",
+  "type": "record",
+  "namespace": "ru.otus.java.pro.mt.core.transfers.avro.model.TransferStatus",
+  "fields": [
+    {
+      "name": "transferId",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    }
+  ]
+}

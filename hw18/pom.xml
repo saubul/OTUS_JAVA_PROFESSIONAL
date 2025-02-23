@@ -18,6 +18,7 @@
     <modules>
         <module>limits</module>
         <module>core-transfers</module>
+        <module>notifications</module>
     </modules>
 
 </project>

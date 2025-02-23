@@ -1,0 +1,19 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: mt-notifications
+  kafka:
+    bootstrap-servers: "localhost:9091"
+    consumer:
+      allow.auto.create.topics: true
+      group-id: mt-notifications
+      properties:
+        schema.registry.url: http://localhost:8081
+        specific.avro.reader: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+notifications:
+  kafka:
+    topics:
+      transfers-status: mt.transfers.status.info
