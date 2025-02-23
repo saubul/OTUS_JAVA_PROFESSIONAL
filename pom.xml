@@ -1,39 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ru.otus</groupId>
-  <artifactId>OTUS_JAVA_PROFESSIONAL</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <groupId>ru.otus</groupId>
+    <artifactId>OTUS_JAVA_PROFESSIONAL</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <name>OTUS_JAVA_PROFESSIONAL</name>
-  <url>http://maven.apache.org</url>
-  <modules>
-    <module>hw01</module>
-    <module>hw02</module>
-    <module>hw03</module>
-    <module>hw04</module>
-    <module>hw05</module>
-    <module>hw06</module>
-    <module>hw07</module>
-    <module>hw08</module>
-    <module>hw09</module>
-    <module>hw10</module>
-    <module>hw11</module>
-    <module>hw12</module>
-    <module>hw13</module>
-    <module>hw14</module>
-    <module>hw15</module>
-    <module>hw16</module>
-    <module>hw17</module>
-    <module>hw18</module>
-  </modules>
+    <name>OTUS_JAVA_PROFESSIONAL</name>
+    <url>http://maven.apache.org</url>
+    <modules>
+        <module>hw01</module>
+        <module>hw02</module>
+        <module>hw03</module>
+        <module>hw04</module>
+        <module>hw05</module>
+        <module>hw06</module>
+        <module>hw07</module>
+        <module>hw08</module>
+        <module>hw09</module>
+        <module>hw10</module>
+        <module>hw11</module>
+        <module>hw12</module>
+        <module>hw13</module>
+        <module>hw14</module>
+        <module>hw15</module>
+        <module>hw16</module>
+        <module>hw17</module>
+        <module>hw18</module>
+        <module>hw19</module>
+    </modules>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
 
 </project>
