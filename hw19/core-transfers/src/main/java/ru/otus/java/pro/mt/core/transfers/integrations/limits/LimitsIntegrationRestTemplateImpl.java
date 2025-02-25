@@ -29,7 +29,7 @@ public class LimitsIntegrationRestTemplateImpl implements LimitsIntegration {
 //                    .getForObject(limitsIntegrationProperties.getUrl(), RemainingLimitDto.class);
             MultiValueMap<String, String> headers = new HttpHeaders();
             headers.put("client-id", List.of("1"));
-            RequestEntity<Void> re = new RequestEntity<>(headers,HttpMethod.GET, new URI(limitsIntegrationProperties.getUrl()));
+            RequestEntity<Void> re = new RequestEntity<>(headers,HttpMethod.GET, new URI(limitsIntegrationProperties.getRestClientConfigurationProperties().getUrl()));
             RemainingLimitDto remainingLimit = commonRestTemplate.exchange(re, RemainingLimitDto.class).getBody();
             return remainingLimit;
         } catch (HttpClientErrorException e) {
