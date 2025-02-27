@@ -10,7 +10,5 @@ import java.time.Duration;
 @Data
 @ConfigurationProperties("integrations.limits")
 public class LimitsIntegrationProperties {
-    private String url;
-    private Duration readTimeout;
-    private Duration writeTimeout;
+    private RestClientConfigurationProperties restClientConfigurationProperties;
 }
