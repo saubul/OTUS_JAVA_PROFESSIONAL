@@ -5,7 +5,7 @@ spring:
     name: mt-core-transfers
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/mt_core_transfers
+    url: jdbc:postgresql://localhost:5450/mt_core_transfers
     username: postgres
     password: postgres
   jpa:

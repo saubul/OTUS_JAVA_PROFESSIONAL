@@ -14,6 +14,7 @@ import ru.otus.java.pro.mt.core.transfers.dtos.TransfersPageDto;
 import ru.otus.java.pro.mt.core.transfers.entities.Transfer;
 import ru.otus.java.pro.mt.core.transfers.exceptions_handling.ErrorDto;
 import ru.otus.java.pro.mt.core.transfers.exceptions_handling.ResourceNotFoundException;
+import ru.otus.java.pro.mt.core.transfers.metrics.TransfersRequestsMetricsService;
 import ru.otus.java.pro.mt.core.transfers.services.TransfersService;
 
 import java.util.function.Function;
@@ -24,7 +25,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/transfers")
 @Tag(name = "Переводы", description = "Методы работы с переводами")
 public class TransfersController {
+
     private final TransfersService transfersService;
+    private final TransfersRequestsMetricsService transfersRequestsMetricsService;
 
     private static final Function<Transfer, TransferDto> ENTITY_TO_DTO = t -> new TransferDto(t.getId(), t.getClientId(), t.getTargetClientId(), t.getSourceAccount(), t.getTargetAccount(), t.getMessage(), t.getAmount());
 
@@ -40,11 +43,15 @@ public class TransfersController {
     )
     public TransfersPageDto getAllTransfers(
             @Parameter(description = "Идентификатор клиента", required = true, schema = @Schema(type = "string", maxLength = 10, example = "1234567890"))
-            @RequestHeader(name = "client-id") String clientId
+            @RequestHeader(name = "client-id") String clientId,
+            @Parameter(description = "Номер страницы", schema = @Schema(type = "number", example = "0"))
+            @RequestParam(name = "pageNum") Integer pageNum,
+            @Parameter(description = "Размер страницы", schema = @Schema(type = "number", example = "25"))
+            @RequestParam(name = "pageSize") Integer pageSize
     ) {
         return new TransfersPageDto(
                 transfersService
-                        .getAllTransfers(clientId)
+                        .getAllTransfers(clientId, pageNum, pageSize)
                         .stream()
                         .map(ENTITY_TO_DTO).collect(Collectors.toList())
         );
@@ -84,6 +91,7 @@ public class TransfersController {
             @Parameter(description = "Данные для выполнения перевода", required = true)
             @RequestBody ExecuteTransferDtoRq executeTransferDtoRq
     ) {
+        transfersRequestsMetricsService.increment();
         transfersService.execute(clientId, executeTransferDtoRq);
     }
 }
